@@ -10,41 +10,69 @@ namespace ConsoleApplication
 
             var list = new List<string>();
 
-
-
-            while(true)
+            while (true)
             {
-                
-                Console.WriteLine("Enter command (+ item, - item, or -- to clear)):");
+
+                Console.WriteLine("Enter command (+ item, - item, or -- to clear.  Type q to quit.)):");
                 var cmd = Console.ReadLine().Trim();
-                if(cmd == "--"){
-                    list.Clear();
-                }else if(cmd.StartsWith("+ ")){
-                    list.Add(cmd.Substring(2));
-                }else if(cmd.StartsWith("- ")){
-                    list.RemoveAll(s => s.Equals(cmd.Substring(2)));
-                }else if(cmd == "q"){
-                    return;                
-                }else{
+                if (cmd == "--")
+                {
+                    clearList(list);
+                }
+                else if (cmd.StartsWith("+ "))
+                {
+                    addItemToList(list, cmd.Substring(2));
+                }
+                else if (cmd.StartsWith("- "))
+                {
+                    removeItemFromList(list, cmd.Substring(2));
+                }
+                else if (cmd == "q")
+                {
+                    Console.WriteLine("Goodbye!");
+                    return;
+                }
+                else
+                {
                     Console.WriteLine("Error: Invalid command.");
                 }
 
                 printList(list);
             }
+        }
 
+        public static void removeItemFromList(List<string> list, string item)
+        {
+            list.RemoveAll(s => s.Equals(item));
+        }
+
+        public static void addItemToList(List<string> list, string item)
+        {
+            list.Add(item);
+        
+        }
+        public static void clearList(List<string> list)
+        {
+            list.Clear();
         }
 
         public static void printList(List<string> list)
         {
-            if (list.Count > 0){
+            if (list.Count > 0)
+            {
                 Console.WriteLine("Current List:");
-                list.ForEach(Console.WriteLine);
-            }else{
+                foreach(string item in list)
+                {
+                    Console.WriteLine($"  * {item}");
+                }
+            }
+            else
+            {
                 Console.Write("[List is currently empty.]");
             }
             Console.WriteLine();
         }
     }
 
-    
+
 }
