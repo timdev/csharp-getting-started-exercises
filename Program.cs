@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApplication
 {
@@ -17,6 +18,7 @@ namespace ConsoleApplication
             foreach(int num in nums) sum += num;
 
             Console.WriteLine($"Sum: {sum}");
+            Console.WriteLine("Sum (Linq): " + nums.Sum());
         }
     }
 
