@@ -15,11 +15,11 @@ namespace ConsoleApplication
             Country = country;  
         }
 
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
+        public string StreetAddress { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string PostalCode { get; private set; }
+        public string Country { get; private set; }
 
         public override string ToString() 
         {
@@ -34,11 +34,11 @@ namespace ConsoleApplication
     }
     public class Person
     {
-        public string FirstName { get; set; }
+        public string FirstName { get; private set; }
      
-        public string LastName { get; set; }
+        public string LastName { get; private set; }
      
-        public Address ShippingAddress { get; set; }
+        public Address ShippingAddress { get; private set; }
 
         public Person(string firstName, string lastName, Address shippingAddress)
         {
@@ -56,9 +56,9 @@ namespace ConsoleApplication
     }
     public class Company
     {
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public Address ShippingAddress { get; set; }
+        public Address ShippingAddress { get; private set; }
 
         public Company(string name, Address shippingAddress)
         {
