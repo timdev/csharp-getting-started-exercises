@@ -22,7 +22,6 @@ namespace ConsoleApplication
                 }else if(cmd.StartsWith("+ ")){
                     list.Add(cmd.Substring(2));
                 }else if(cmd.StartsWith("- ")){
-                    // list.Remove(cmd.Substring(2));
                     list.RemoveAll(s => s.Equals(cmd.Substring(2)));
                 }else if(cmd == "q"){
                     return;                
