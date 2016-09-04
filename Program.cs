@@ -11,34 +11,33 @@ namespace GettingStartedTutorials.CSharp
         {
             var people = GenerateListOfPeople();
 
-            Console.WriteLine("Find developers older than X.");
+            Console.WriteLine("Find People by Name.");
             
-            var minAge = AskMinAge();
+            var namePart = AskNamePart().ToLower();
 
-            var agedDevs = people.Where(x => x.Age >= minAge && x.Occupation == "Dev");
+            var matches = people.Where(x => x.FirstName.ToLower().StartsWith(namePart)  || x.LastName.ToLower().StartsWith(namePart));
 
             Console.WriteLine();
-            Console.WriteLine("Found {0} Developers of at least {1} years of age.", agedDevs.Count(), minAge);
-            foreach(Person dev in agedDevs)
+            Console.WriteLine("Found {0} Developers with a name like '{1}'", matches.Count(), namePart);
+            foreach(Person dev in matches)
             {
-                Console.WriteLine($"\t{dev.FullName} is {dev.Age} years old.");
+                Console.WriteLine($"\t{dev.FullName} matches.");
             }
         }
 
-        private static int AskMinAge()
+        private static string AskNamePart()
         {
-            Console.Write("Enter minimum age (numbers only): ");
-            string str = Console.ReadLine();
-            int min;
-            if (Int32.TryParse(str, out min))
-            {
-                return min;
+            Console.Write("Enter a first or last name (3 or more characters): ");
+            string name = Console.ReadLine().Trim();
+            if (name.Length > 2){
+                return name;
             }
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Invalid min-age, must be an integer.");
+            Console.WriteLine("Error: You must enter at least three letters.");
             Console.ResetColor();
-            return AskMinAge();
+            return AskNamePart();
         }
+
         public static List<Person> GenerateListOfPeople()
         {
             var people = new List<Person>();
@@ -48,6 +47,8 @@ namespace GettingStartedTutorials.CSharp
             people.Add(new Person { FirstName = "Brendan", LastName = "Enrick", Occupation = "Dev", Age = 30 });
             people.Add(new Person { FirstName = "Jane", LastName = "Doe", Occupation = "Dev", Age = 35 });
             people.Add(new Person { FirstName = "Samantha", LastName = "Jones", Occupation = "Dev", Age = 24 });
+            people.Add(new Person { FirstName = "Reggie", LastName = "Jones", Occupation = "Manager", Age = 27 });
+            people.Add(new Person { FirstName = "Dweezil", LastName = "Zappa", Occupation = "Guitarist", Age = 46 });
 
             return people;
         }
