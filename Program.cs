@@ -23,17 +23,14 @@ namespace ConsoleApplication
 
         public override string ToString() 
         {
-            string str = String.Empty;
-            str += StreetAddress;
-            str += "\n";
-            str += $"{City}, {State}, {PostalCode}\n";
-            str += Country; 
-            
-            return str;
+            return $"{StreetAddress}\n{City}, {State}, {PostalCode}\n{Country}";
         }
     }
     public class Person
     {
+
+        public string Name { get { return $"{FirstName} {LastName}"; } }
+
         public string FirstName { get; private set; }
      
         public string LastName { get; private set; }
@@ -49,8 +46,7 @@ namespace ConsoleApplication
 
         public override string ToString()
         {
-            var str = FirstName + " " + LastName + "\n" + ShippingAddress.ToString();
-            return str;
+            return Name + "\n" + ShippingAddress;
         }
 
     }
@@ -68,7 +64,7 @@ namespace ConsoleApplication
 
         public override string ToString()
         {
-            return Name + "\n" + ShippingAddress.ToString();
+            return Name + "\n" + ShippingAddress;
         }
     }
 
